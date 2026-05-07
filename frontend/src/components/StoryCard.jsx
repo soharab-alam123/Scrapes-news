@@ -9,7 +9,7 @@ const StoryCard = ({ story, isBookmarked, onBookmarkToggle }) => {
     const handleBookmark = async () => {
         if (!user) return alert('Please login to bookmark stories');
         try {
-            await API.post(`/stories/${story._id}/bookmark`);
+            await API.post(`stories/${story._id}/bookmark`);
             onBookmarkToggle(story._id);
         } catch (err) {
             console.error(err);
@@ -26,7 +26,7 @@ const StoryCard = ({ story, isBookmarked, onBookmarkToggle }) => {
                     <span>{story.postedAt}</span>
                 </div>
             </div>
-            <button 
+            <button
                 className={`bookmark-btn ${isBookmarked ? 'active' : ''}`}
                 onClick={handleBookmark}
             >
