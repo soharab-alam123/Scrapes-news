@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const base = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '');
+const base = (import.meta.env.VITE_API_URL || 'https://scrapes-news-backend-k2se.onrender.com').replace(/\/$/, '');
 const API = axios.create({
     baseURL: base.endsWith('/api') ? `${base}/` : `${base}/api/`
 });
