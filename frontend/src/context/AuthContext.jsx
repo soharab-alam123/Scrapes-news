@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (email, password) => {
-        const { data } = await axios.post('https://scrapes-news-backend.onrender.com/auth/login', { email, password });
+        const { data } = await axios.post('https://scrapes-news-backend-fnc9.onrender.com/auth/login', { email, password });
         setUser(data);
         localStorage.setItem('user', JSON.stringify(data));
         return data;
