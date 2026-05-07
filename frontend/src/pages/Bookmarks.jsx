@@ -14,7 +14,7 @@ const Bookmarks = () => {
     const fetchBookmarks = async () => {
         setLoading(true);
         try {
-            const { data } = await API.get('/stories/bookmarks');
+            const { data } = await API.get('stories/bookmarks');
             setStories(data);
         } catch (err) {
             console.error(err);
@@ -43,9 +43,9 @@ const Bookmarks = () => {
             ) : (
                 <div style={{ marginTop: '2rem' }}>
                     {stories.map(story => (
-                        <StoryCard 
-                            key={story._id} 
-                            story={story} 
+                        <StoryCard
+                            key={story._id}
+                            story={story}
                             isBookmarked={true}
                             onBookmarkToggle={handleBookmarkToggle}
                         />
