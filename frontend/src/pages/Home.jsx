@@ -16,12 +16,12 @@ const Home = () => {
     const fetchStories = async () => {
         setLoading(true);
         try {
-            const { data } = await API.get(`/stories?page=${page}&limit=10`);
+            const { data } = await API.get(`stories?page=${page}&limit=10`);
             setStories(data.stories);
             setTotalPages(data.pages);
-            
+
             if (user) {
-                const bRes = await API.get('/stories/bookmarks');
+                const bRes = await API.get('stories/bookmarks');
                 setBookmarks(bRes.data.map(b => b._id));
             }
         } catch (err) {
@@ -34,7 +34,7 @@ const Home = () => {
     const handleScrape = async () => {
         setScraping(true);
         try {
-            await API.post('/scrape');
+            await API.post('scrape');
             fetchStories();
         } catch (err) {
             console.error(err);
@@ -48,7 +48,7 @@ const Home = () => {
     }, [page, user]);
 
     const toggleBookmarkInState = (id) => {
-        setBookmarks(prev => 
+        setBookmarks(prev =>
             prev.includes(id) ? prev.filter(bId => bId !== id) : [...prev, id]
         );
     };
@@ -57,9 +57,9 @@ const Home = () => {
         <div className="container">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
                 <h1>Top Stories</h1>
-                <button 
-                    className="bookmark-btn" 
-                    onClick={handleScrape} 
+                <button
+                    className="bookmark-btn"
+                    onClick={handleScrape}
                     disabled={scraping}
                     style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
                 >
@@ -73,26 +73,26 @@ const Home = () => {
             ) : (
                 <>
                     {stories.map(story => (
-                        <StoryCard 
-                            key={story._id} 
-                            story={story} 
+                        <StoryCard
+                            key={story._id}
+                            story={story}
                             isBookmarked={bookmarks.includes(story._id)}
                             onBookmarkToggle={toggleBookmarkInState}
                         />
                     ))}
 
                     <div className="pagination">
-                        <button 
-                            className="pagination-btn" 
-                            disabled={page === 1} 
+                        <button
+                            className="pagination-btn"
+                            disabled={page === 1}
                             onClick={() => setPage(p => p - 1)}
                         >
                             Previous
                         </button>
                         <span style={{ alignSelf: 'center' }}>Page {page} of {totalPages}</span>
-                        <button 
-                            className="pagination-btn" 
-                            disabled={page === totalPages} 
+                        <button
+                            className="pagination-btn"
+                            disabled={page === totalPages}
                             onClick={() => setPage(p => p + 1)}
                         >
                             Next
