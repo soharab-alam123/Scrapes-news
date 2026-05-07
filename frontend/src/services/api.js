@@ -1,7 +1,8 @@
 import axios from 'axios';
 
+const base = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '');
 const API = axios.create({
-    baseURL: 'https://scrapes-news-backend-fnc9.onrender.com
+    baseURL: base.endsWith('/api') ? `${base}/` : `${base}/api/`
 });
 
 API.interceptors.request.use((config) => {
