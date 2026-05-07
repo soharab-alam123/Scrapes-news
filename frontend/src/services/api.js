@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-    baseURL: 'https://scrapes-news-backend.onrender.com'
+    baseURL: 'https://scrapes-news-backend-fnc9.onrender.com
 });
 
 API.interceptors.request.use((config) => {
