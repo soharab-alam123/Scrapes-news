@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import API from '../services/api';
 
 const AuthContext = createContext();
 
@@ -18,14 +18,14 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (email, password) => {
-        const { data } = await axios.post('https://scrapes-news-backend-fnc9.onrender.com/auth/login', { email, password });
+        const { data } = await API.post('auth/login', { email, password });
         setUser(data);
         localStorage.setItem('user', JSON.stringify(data));
         return data;
     };
 
     const register = async (username, email, password) => {
-        const { data } = await axios.post('http://localhost:5000/api/auth/register', { username, email, password });
+        const { data } = await API.post('auth/register', { username, email, password });
         setUser(data);
         localStorage.setItem('user', JSON.stringify(data));
         return data;
